@@ -1,0 +1,1 @@
+/home/anne/.shell_prompt.sh
