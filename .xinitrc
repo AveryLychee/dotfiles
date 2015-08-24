@@ -1,1 +1,2 @@
-/home/anne/.xinitrc
+sxhkd &
+exec bspwm &
