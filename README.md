@@ -33,7 +33,7 @@ If you just want some partial stuff, feel free to use the dots for inspiration! 
 Installation
 ------------
 
-Copy all these files into your home directory (maintaining the directory structure here).
+Copy all these files into your home directory (maintaining the directory structure here). Most things should just work, although some of them have hardcoded paths that you'll need to fix.
 
 In addition, fish is using the `fishbone` theme, so get oh-my-fish and install that.
 
