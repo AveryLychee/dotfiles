@@ -1,0 +1,2 @@
+#!/usr/bin/env fish
+xdotool search --onlyvisible --classname URxvtFuzzy windowunmap; or xdotool search --classname URxvtFuzzy windowmap; or urxvt -name URxvtFuzzy -geometry 40x8+297+1 -e fish -c 'list_programs | fzf --reverse --border | xargs lnch'

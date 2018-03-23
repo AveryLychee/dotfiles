@@ -1,0 +1,162 @@
+#
+# bspwm hotkeys
+#
+
+super + alt + Escape
+	bspc quit
+
+# close window
+super + x
+	bspc node -c
+
+super + shift + q
+	bspc node --kill
+
+super + q
+	bspc monitor -f last
+
+# switch between monocle and tiled mode
+super + t
+	bspc desktop -l next
+
+# balances the desktop
+super + b
+	bspc desktop -B
+
+# tiled, float, fullscreen
+super + {shift + t, s,f}
+	bspc node -t {tiled, floating,fullscreen}
+
+# last window / last desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last.local
+
+# switch current window with last
+super + apostrophe
+	bspc node -s last
+
+# older / newer windows
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# swap with largest window
+super + m
+	bspc node -s biggest
+
+# focus/swap with window in direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# cycle between windows
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
+
+# Circulate backward/forward
+super + {comma,period}
+	bspc node @/ -C {backward,forward}
+
+# Rotate leaves of tree
+super + shift + {comma,period}
+	bspc node @/ -R {90,270}
+
+# previous / next desktop
+super + bracket{left,right}
+	bspc desktop -f {prev,next}
+
+# change preselected splitting area
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# cancel window / desktop preselected splitting areas
+super + ctrl + {_,shift + }space
+	bspc {node -p cancel,desktop -c}
+
+# expand window
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0, bottom 0 20, top 0 -20, right 20 0}
+
+# contract window
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0, top 0 20, bottom 0 -20, left 20 0}
+
+# set splitting ratio of selected window
+super + ctrl + {1-9}
+	bspc node -r 0.{1-9}
+
+# switch desktop / move window to desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} {1-9,10}
+
+# focus
+~button1
+	bspc pointer -g focus
+
+# hide
+super + ctrl + shift + alt + h
+  bspc node -g hidden
+
+# resizing/moving windows
+super + button{1-3}
+	bspc pointer -g {move,resize_side,resize_corner}
+
+# ungrab pointer
+super + @button{1-3}
+	bspc pointer -u
+
+super + !button{1-3}
+	bspc pointer --track %i %i
+
+# Reducing gap on the fly 
+super + {minus,equal}
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
+
+#
+# wm independent hotkeys
+#
+
+super + {_,shift} + Return
+	{urxvt -e fish, qutebrowser}
+
+super + z
+	urxvt -e fish
+
+super + space
+	fuzzy_launch
+
+
+# Volume
+super + F1
+	amixer sset Master toggle
+
+super + F2
+	amixer sset Master 2%-
+
+super + F3
+	amixer sset Master 2%+
+
+super + F4
+	mpc toggle
+
+super + F5
+	xbacklight -dec 5
+
+super + F6
+	xbacklight -inc 5
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+
+super + shift + r
+	systemctl reboot
+	
+super + shift + p
+	systemctl poweroff
+
+
+# take a screenshot
+super + alt + m
+  maim -s "/storio/screenshots/`date '+%s'`.png"

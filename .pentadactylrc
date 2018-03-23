@@ -1,9 +1,0 @@
-"hg7166
-
-loadplugins '\.(js|penta)$'
-group user
-set cdpath=''
-set guioptions=Csn
-
-" vim: set ft=pentadactyl:
-
