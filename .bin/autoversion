@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# go to checkout repository folder you want to watch
+for path in '/home/avery/Sheets' '/home/avery/Fiction'
+do
+    cd "$path"
+    # start watching the directory for changes recusively, ignoring .bzr dir
+    # comment is made out of dir/filename
+    # no output is shown from this, but wrinting a filename instead of /dev/null would
+    # allow logging
+    inotifywait --exclude .bzr -r -q -m -e CLOSE_WRITE --format="bzr commit -m 'autocommit for %w/%f'" ./ | sh  2>/dev/null 1>&2 &
+    # disown the pid, so the inotify thread will get free from parent process
+    # and will not be terminated with it
+    PID=`ps aux | grep inotify | grep CLOSE_WRITE | grep -v grep | awk '{print $2}'`
+    disown $PID
+
+    # this is for new files, not modifications, optional
+    inotifywait --exclude .bzr -r -q -m -e CREATE --format="bzr add *; bzr commit -m 'new file added %w/%f'" ./ | sh  2>/dev/null 1>&2 &
+    PID=`ps aux | grep inotify | grep CREATE | grep -v grep | awk '{print $2}'`
+    disown $PID
+done
+
+exit 0;
+

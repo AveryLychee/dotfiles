@@ -37,7 +37,7 @@
 URxvt.scrollBar: false
 URxvt.font: xft:DejaVu Sans Mono:pixelsize=14
 
-URxvt.perl-ext-common: keyboard-select, font-size
+URxvt.perl-ext-common: keyboard-select,font-size
 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keyboard-select.clipboard: true

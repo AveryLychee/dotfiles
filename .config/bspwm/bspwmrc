@@ -6,7 +6,6 @@ bspc config window_gap          14
 bspc config split_ratio         0.52
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
-bspc config focus_by_distance   true
 bspc config focus_follows_pointer true
 bspc config top_padding 		0
 bspc config bottom_padding 		30
@@ -28,12 +27,20 @@ bspc rule -a Gimp desktop=^8 follow=on floating=on
 bspc rule -a mplayer2 floating=on
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-bspc rule -a steam follow=no
+bspc rule -a Steam follow=no desktop=^7
 bspc rule -a "Even More" floating=on
 bspc rule -a "Ipsum Writer" floating=on
 bspc rule -a feh* floating=on
-bspc rule -a telegram-desktop desktop=^10
+bspc rule -a Telegram desktop=^10
 bspc rule -a Discord desktop=^5
 bspc rule -a \*:"URxvtFuzzy" state=floating center=on sticky=on
+bspc rule -a Emacs state=tiled
+bspc rule -a "Surface Inspector" state=floating
+
+# pointer actions
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
 
 /home/avery/.config/bspwm/autostart.sh

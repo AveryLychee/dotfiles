@@ -89,24 +89,9 @@ super + ctrl + {1-9}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} {1-9,10}
 
-# focus
-~button1
-	bspc pointer -g focus
-
 # hide
 super + ctrl + shift + alt + h
   bspc node -g hidden
-
-# resizing/moving windows
-super + button{1-3}
-	bspc pointer -g {move,resize_side,resize_corner}
-
-# ungrab pointer
-super + @button{1-3}
-	bspc pointer -u
-
-super + !button{1-3}
-	bspc pointer --track %i %i
 
 # Reducing gap on the fly 
 super + {minus,equal}
@@ -123,7 +108,7 @@ super + z
 	urxvt -e fish
 
 super + space
-	fuzzy_launch
+	fuzzy_launch 2>~/testfile
 
 
 # Volume
@@ -159,4 +144,4 @@ super + shift + p
 
 # take a screenshot
 super + alt + m
-  maim -s "/storio/screenshots/`date '+%s'`.png"
+  sleep 1s; LD_LIBRARY_PATH=~/.libgl-shim maim -s "/storio/screenshots/`date '+%s'`.png"
